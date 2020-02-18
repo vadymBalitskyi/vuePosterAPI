@@ -35,6 +35,10 @@ module.exports = {
       },
     },
   },
+  mode: 'spa',
+  router: {
+    base: '/vuePosterAPI/'
+  },
   build: {
     /*
     ** Run ESLint on save
