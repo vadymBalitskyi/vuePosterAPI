@@ -12,7 +12,7 @@
 
             nuxt-link(:to="`/${poster['id']}`")
                 v-card-title(
-                    class="pb-0"
+                    class="poster__title pb-0"
                     v-html="poster['title']")
 
             v-card-text(class="py-3")
@@ -22,14 +22,14 @@
                     class="mx-0")
                     div(class="d-flex")
                         v-rating(
-                            :value="(poster['vote_average']/2)"
+                            :value="(divideByTwo(poster['vote_average']))"
                             length="5"
                             color="amber"
                             dense
                             half-increments
                             readonly
                             size="14")
-                        div(class="grey--text ml-4") {{poster['vote_average']}} ({{poster['vote_count']}})
+                        div(class="grey--text ml-4") {{divideByTwo(poster['vote_average'])}} ({{poster['vote_count']}})
                     div
                         v-btn(
                             icon
@@ -46,7 +46,8 @@
 <script>
     import {
         truncate,
-        getImgUrl
+        getImgUrl,
+        divideByTwo
     } from '@/plugins/helpers'
 
     export default {
@@ -62,15 +63,21 @@
         }),
         methods: {
             truncate,
-            getImgUrl
+            getImgUrl,
+            divideByTwo
         }
     }
 </script>
 
 <style lang="scss" scoped>
+    a {
+        text-decoration: none;
+    }
     .poster {
-        a {
-            text-decoration: none;
+        &__title {
+            align-items: flex-start;
+            height: 78px;
+            overflow: hidden;
         }
     }
 </style>

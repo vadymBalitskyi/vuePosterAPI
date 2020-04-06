@@ -18,14 +18,14 @@
                     class="mx-0 pb-3")
                     div(class="d-flex")
                         v-rating(
-                            :value="(movie['vote_average'])"
-                            length="10"
+                            :value="divideByTwo(movie['vote_average'])"
+                            length="5"
                             color="amber"
                             dense
                             half-increments
                             readonly
                             size="14")
-                        div(class="grey--text ml-4") {{movie['vote_average']}} ({{movie['vote_count']}})
+                        div(class="grey--text ml-4") {{divideByTwo(movie['vote_average'])}} ({{movie['vote_count']}})
                 v-row(justify="start")
                     v-col(class="py-0")
                         span(class="subtitle-1") genre:
@@ -50,7 +50,8 @@
     import axios from 'axios'
     import {
         key,
-        getImgUrl
+        getImgUrl,
+        divideByTwo
     } from '@/plugins/helpers'
 
     export default {
@@ -75,6 +76,7 @@
         },
         methods: {
             getImgUrl,
+            divideByTwo,
             async loadData() {
                 const url = `https://api.themoviedb.org/3/movie/${this.id}?api_key=${this.key}`;
 
